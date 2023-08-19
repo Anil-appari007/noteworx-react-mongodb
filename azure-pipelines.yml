@@ -58,6 +58,14 @@ stages:
         containerRegistry: 'DH'
         repository: 'anilappari/noteworkxfe'
         command: 'push'
+    - task: Kubernetes@1
+      inputs:
+        connectionType: 'Kubernetes Service Connection'
+        kubernetesServiceEndpoint: 'AKS-networx'
+        command: 'get'
+        arguments: 'pods,svc'
+        secretType: 'dockerRegistry'
+        containerRegistryType: 'Azure Container Registry'
         
     # - task: Docker@2
     #   inputs:
