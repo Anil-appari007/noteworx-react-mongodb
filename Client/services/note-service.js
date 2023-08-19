@@ -14,7 +14,9 @@ import * as axios from 'axios';
 
 // export API_URL=http://your-api-url.com
 // const baseApiUrl = process.env.API_URL || 'http://localhost:8000/api';
-const baseApiUrl = process.env.API_URL ;
+// const baseApiUrl = process.env.API_URL ;
+
+const baseApiUrl = 'http://noteworkxbackend:8000/api'
 
 
 
