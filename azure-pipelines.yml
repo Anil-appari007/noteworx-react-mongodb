@@ -34,3 +34,9 @@ stages:
         repository: 'noteworkxbe'
         command: 'buildAndPush'
         Dockerfile: 'dockerfiles/Dockerfile.be'
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'DH'
+        repository: 'noteworkxfe'
+        command: 'buildAndPush'
+        Dockerfile: 'dockerfiles/Dockerfile.fe'
