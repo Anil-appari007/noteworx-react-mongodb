@@ -16,6 +16,7 @@ variables:
 stages:
 - stage: Build
   displayName: Build image
+
   jobs:
   - job: Build
     displayName: Build
@@ -27,3 +28,9 @@ stages:
           # Write your commands here
           
           echo 'Hello world'
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'DH'
+        repository: 'noteworkxbe'
+        command: 'buildAndPush'
+        Dockerfile: 'dockerfiles/Dockerfile.be'
