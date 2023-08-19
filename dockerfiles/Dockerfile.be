@@ -3,6 +3,7 @@ USER node
 WORKDIR /tmp/app
 COPY ../. /tmp/app/.
 
+##
 RUN pwd && ls -lrt
 RUN npm install
 
