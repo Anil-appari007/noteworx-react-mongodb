@@ -53,7 +53,7 @@ spec:
     spec:
       containers:
       - name: noteworkxbackend
-        image: anilappari/noteworkxbe:53
+        image: anilappari/noteworkxbe:TAG
         # command: ["npm", "run", "serve:api"]
         env:
         - name: DB_HOST
@@ -97,7 +97,7 @@ spec:
     spec:
       containers:
       - name: noteworkxfrontend
-        image: anilappari/noteworkxfe:53
+        image: anilappari/noteworkxfe:TAG
         env:
         - name: API_URL
           value: "http://noteworkxbackend:8000/api"
