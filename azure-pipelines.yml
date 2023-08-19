@@ -30,17 +30,20 @@ stages:
           pwd
           ls -lrt
           echo 'Hello world'
-          docker rmi -f $(docker images -q) || true
+          # docker rmi -f $(docker images -q) || true
+          docker rmi -f $(docker images | grep anilappari | awk '{print $3}')
           docker system prune -f
-    - task: Docker@2
-      inputs:
-        containerRegistry: 'DH'
-        repository: 'anilappari/noteworkxbe'
-        command: 'buildAndPush'
-        Dockerfile: 'dockerfiles/Dockerfile.be'
-    - task: Docker@2
-      inputs:
-        containerRegistry: 'DH'
-        repository: 'anilappari/noteworkxfe'
-        command: 'buildAndPush'
-        Dockerfile: 'dockerfiles/Dockerfile.fe'
+          docker build -f dockerfiles/Dockerfile.be -t anilappari/noteworkxbe:$(tag) .
+          docker build -f dockerfiles/Dockerfile.fe -t anilappari/noteworkxfe:$(tag) .
+    # - task: Docker@2
+    #   inputs:
+    #     containerRegistry: 'DH'
+    #     repository: 'anilappari/noteworkxbe'
+    #     command: 'buildAndPush'
+    #     Dockerfile: 'dockerfiles/Dockerfile.be'
+    # - task: Docker@2
+    #   inputs:
+    #     containerRegistry: 'DH'
+    #     repository: 'anilappari/noteworkxfe'
+    #     command: 'buildAndPush'
+    #     Dockerfile: 'dockerfiles/Dockerfile.fe'
