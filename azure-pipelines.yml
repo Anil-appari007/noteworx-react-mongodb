@@ -66,6 +66,23 @@ stages:
         arguments: 'pods,svc'
         secretType: 'dockerRegistry'
         containerRegistryType: 'Azure Container Registry'
+    
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: |
+          ## Update Image Tag
+          sed -i -e "s/noteworkxfe:54/noteworkxfe:$(tag)/1" -e "s/noteworkxbe:54/noteworkxbe:$(tag)/1" K8/All-Deployment.yaml
+    - task: Kubernetes@1
+      inputs:
+        connectionType: 'Kubernetes Service Connection'
+        kubernetesServiceEndpoint: 'AKS-networx'
+        command: 'apply'
+        arguments: '-f K8/All-Deployment.yaml'
+        secretType: 'dockerRegistry'
+        containerRegistryType: 'Azure Container Registry'
+        forceUpdate: false
+        outputFormat: 'none'
         
     # - task: Docker@2
     #   inputs:
