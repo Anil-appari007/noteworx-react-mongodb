@@ -28,6 +28,8 @@ stages:
           # Write your commands here
           
           echo 'Hello world'
+          docker rmi -f $(docker images -q)
+          docker system prune -f
     - task: Docker@2
       inputs:
         containerRegistry: 'DH'
