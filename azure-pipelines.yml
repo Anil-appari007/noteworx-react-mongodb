@@ -8,7 +8,7 @@ trigger:
 # resources:
 # - repo: self
 pool:
-      self: Noteworx
+  self: "Noteworx"
 
 variables:
   tag: '$(Build.BuildId)'
