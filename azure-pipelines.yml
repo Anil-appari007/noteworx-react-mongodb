@@ -5,8 +5,10 @@
 trigger:
 - master
 
-resources:
-- repo: self
+# resources:
+# - repo: self
+pool:
+      self: Noteworx
 
 variables:
   tag: '$(Build.BuildId)'
@@ -17,8 +19,7 @@ stages:
   jobs:
   - job: Build
     displayName: Build
-    pool:
-      vmImage: ubuntu-latest
+    
     steps:
     - task: Bash@3
       inputs:
