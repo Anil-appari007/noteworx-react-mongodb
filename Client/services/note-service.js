@@ -10,7 +10,10 @@ import * as axios from 'axios';
 // db options
 
 
-const baseApiUrl = 'http://localhost:8000/api';
+// const baseApiUrl = 'http://localhost:8000/api';
+
+// export API_URL=http://your-api-url.com
+const baseApiUrl = process.env.API_URL || 'http://localhost:8000/api';
 
 
 // add note
