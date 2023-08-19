@@ -33,8 +33,32 @@ stages:
           # docker rmi -f $(docker images -q) || true
           docker rmi -f $(docker images | grep anilappari | awk '{print $3}')
           docker system prune -f
+          # docker build -f dockerfiles/Dockerfile.be -t anilappari/noteworkxbe:$(tag) .
+          # docker build -f dockerfiles/Dockerfile.fe -t anilappari/noteworkxfe:$(tag) .
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: |
+          # Write your commands here
+          set -x
+
           docker build -f dockerfiles/Dockerfile.be -t anilappari/noteworkxbe:$(tag) .
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: |
           docker build -f dockerfiles/Dockerfile.fe -t anilappari/noteworkxfe:$(tag) .
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'DH'
+        repository: 'anilappari/noteworkxbe'
+        command: 'push'
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'DH'
+        repository: 'anilappari/noteworkxfe'
+        command: 'push'
+        
     # - task: Docker@2
     #   inputs:
     #     containerRegistry: 'DH'
