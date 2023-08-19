@@ -31,12 +31,12 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'DH'
-        repository: 'amilappari/noteworkxbe'
+        repository: 'anilappari/noteworkxbe'
         command: 'buildAndPush'
         Dockerfile: 'dockerfiles/Dockerfile.be'
     - task: Docker@2
       inputs:
         containerRegistry: 'DH'
-        repository: 'amilappari/noteworkxfe'
+        repository: 'anilappari/noteworkxfe'
         command: 'buildAndPush'
         Dockerfile: 'dockerfiles/Dockerfile.fe'
